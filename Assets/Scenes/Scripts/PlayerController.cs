@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float forwardInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(focalPoint.transform.forward * forwardInput * movementSpeed) ;
-        powerUpIndicator.gameObject.transform.position = transform.position + new Vector3 (0f,-.7f,0f);
+        playerRb.AddForce(focalPoint.transform.forward * forwardInput * movementSpeed);
+        powerUpIndicator.gameObject.transform.position = transform.position + new Vector3(0f, -.7f, 0f);
     }
 
     void OnTriggerEnter(Collider other)
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-IEnumerator PowerUpCountDownCoroutine()
+    IEnumerator PowerUpCountDownCoroutine()
     {
         yield return new WaitForSeconds(7);
         hasPowerUp = false;
@@ -58,3 +58,6 @@ IEnumerator PowerUpCountDownCoroutine()
         }
     }
 }
+
+
+

@@ -5,19 +5,35 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     private float spawnRange = 9.0f;
-
     public GameObject enemyPrefab;
+    public GameObject powerUpPrefab;
+    public int enemyCount = 1;
+    public int enemiesToSpawn = 1;
+    public int powerUpCount;
+
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemyWaves(3);
-
+        SpawnEnemyWaves(enemiesToSpawn);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        enemyCount = FindObjectsOfType<Enemy>().Length;
+        powerUpCount = GameObject.FindGameObjectsWithTag("PowerUp").Length;
+
+        if (enemyCount == 0)
+        {
+            enemiesToSpawn++;
+            SpawnEnemyWaves(enemiesToSpawn);
+
+            if (powerUpCount < 2)
+            {
+                Instantiate(powerUpPrefab, randomSpawnLoc(), powerUpPrefab.transform.rotation);
+            }
+
+        }
     }
     private void SpawnEnemyWaves(int enemiesToSpawn)
     {
